@@ -13,7 +13,7 @@
             background:
                 linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url(https://i.pinimg.com/736x/61/25/b6/6125b688dc3e5a078c65ffa273445ef9.jpg) no-repeat center center / cover;
-                background-attachment: fixed;
+            background-attachment: fixed;
         }
 
         nav {
@@ -72,17 +72,83 @@
             border-radius: 10px;
         }
 
+        .features-image img:hover {
+            transform: scale(0.98);
+        }
+
         main {
             color: white;
             padding: 50px;
-            margin-left: 50px;
+            margin-left: 100px;
+        }
+
+        .click {
+            text-align: center;
+            padding: 12px 24px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #e36f5220, #cc8e5e);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .click:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .click:active {
+            transform: scale(0.98);
         }
 
         footer {
             text-align: center;
-            padding: 15px;
-            background: #333;
+            padding: 10px;
+            background-color: #433225;
+            opacity: 0.95;
             color: white;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 250px;
+        }
+
+
+        #task-section {
+            display: none;
+            padding: 50px;
+            color: white;
+        }
+
+        #task-form input,
+        #task-form textarea,
+        #task-form button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #task-form button {
+            background: linear-gradient(45deg, #e36f5220, #cc8e5e);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #task-list {
+            margin-top: 20px;
+        }
+
+        .task-item {
+            background-color: #433225;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -95,36 +161,90 @@
         <a href="#">Login</a>
         <a href="#">Sign up</a>
     </nav>
-    <header>
+    <header id="main-header">
         <h1 class="multi-shadow">You gotta do whatu gotta do!</h1>
         <h4>
             Tired of missing project deadlines and having backlogs?<br>
             Well, not anymore. With this website, you can manage your daily routine much easily!!
         </h4>
     </header>
-    <main>
+    <main id="main-content">
         <div class="features-container">
             <div class="features-text">
                 <h2>Features</h2>
                 <ul><strong>
-                    <li>Create productive schedules</li>
-                    <li>Fun and interactive way to go through your tasks</li>
-                    <li>Complete more tasks daily and get excess leisure hours</li>
-               </strong></ul>
+                        <li>Create productive schedules</li>
+                        <li>Fun and interactive way to go through your tasks</li>
+                        <li>Complete more tasks daily and get excess leisure hours</li>
+                    </strong></ul>
             </div>
             <div class="features-image">
                 <img src="image.jpg.jpg" alt="Features Illustration" width="250">
             </div>
         </div>
-
-
-
-
-
-
+        <p style="text-align: center; font-family: 'Courier New', Courier, monospace; color: white; padding:100px">
+            <strong>
+                A fun and exciting replacement for finishing boring tasks!<br>
+                All for free!!</strong><br><br><button class="click" id="startBtn">START NOW</button>
+        </p>
         <footer>
-            <p>&copy; 2025 My Website | All Rights Reserved</p>
+            <p>THANKS FOR VISITING</p>
         </footer>
+    </main>
+
+
+    <section id="task-section">
+        <h2 style="text-align:center;">Your Task List</h2>
+        <form id="task-form">
+            <input type="text" id="task-name" placeholder="Task Name" required>
+            <input type="date" id="task-date" required>
+            <textarea id="task-remarks" placeholder="Remarks"></textarea>
+            <button type="submit">Add Task</button>
+        </form>
+        <div id="task-list"></div>
+    </section>
+
+    <script>
+        const startBtn = document.getElementById("startBtn");
+        const mainContent = document.getElementById("main-content");
+        const mainHeader = document.getElementById("main-header");
+        const taskSection = document.getElementById("task-section");
+        const taskForm = document.getElementById("task-form");
+        const taskList = document.getElementById("task-list");
+
+        let tasks = [];
+
+        startBtn.addEventListener("click", () => {
+            mainContent.style.display = "none";
+            mainHeader.style.display = "none";
+            taskSection.style.display = "block";
+        });
+
+        taskForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("task-name").value;
+            const date = document.getElementById("task-date").value;
+            const remarks = document.getElementById("task-remarks").value;
+
+            tasks.push({ name, date, remarks });
+            tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+            renderTasks();
+
+            taskForm.reset();
+        });
+
+        function renderTasks() {
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                const taskItem = document.createElement("div");
+                taskItem.classList.add("task-item");
+                taskItem.innerHTML = `<strong>Task:</strong> ${task.name}<br>
+                                      <strong>Due Date:</strong> ${task.date}<br>
+                                      <strong>Remarks:</strong> ${task.remarks}`;
+                taskList.appendChild(taskItem);
+            });
+        }
+    </script>
 </body>
 
 </html>
