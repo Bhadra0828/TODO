@@ -1,77 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Basic Website</title>
+    <title>Web App</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url(https://i.pinimg.com/736x/61/25/b6/6125b688dc3e5a078c65ffa273445ef9.jpg) no-repeat center center / cover;
+                background-attachment: fixed;
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+
         nav {
-            background: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #433225;
             padding: 10px;
             text-align: center;
+            opacity: 0.95;
         }
+
         nav a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
-        main {
-            padding: 20px;
-        }
-        footer {
-            background: #4CAF50;
+
+        header {
             color: white;
+            padding: 15px;
+            padding-bottom: 100px;
             text-align: center;
-            padding: 10px;
-            margin-top: 20px;
+            margin-top: 60px;
+        }
+
+        .multi-shadow {
+            font-size: 3rem;
+            margin-top: 40px;
+            color: white;
+            text-shadow:
+                2px 2px 0 black,
+                4px 4px 0 rgba(255, 111, 0, 0.279),
+                6px 6px 0 rgb(234, 173, 112);
+        }
+
+        .features-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .features-text {
+            flex: 1;
+        }
+
+        .features-image img {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        main {
+            color: white;
+            padding: 50px;
+            margin-left: 50px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            color: white;
         }
     </style>
 </head>
+
 <body>
-
-    <header>
-        <h1>Welcome to My Website</h1>
-        <p>A simple HTML template</p>
-    </header>
-
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="#">Homepage</a>
+        <a href="#">About us</a>
+        <a href="#">Queries</a>
+        <a href="#">Login</a>
+        <a href="#">Sign up</a>
     </nav>
-
+    <header>
+        <h1 class="multi-shadow">You gotta do whatu gotta do!</h1>
+        <h4>
+            Tired of missing project deadlines and having backlogs?<br>
+            Well, not anymore. With this website, you can manage your daily routine much easily!!
+        </h4>
+    </header>
     <main>
-        <h2>About This Site</h2>
-        <p>This is a very simple website built with just HTML and CSS. You can expand it by adding more pages, images, and styles.</p>
-        
-        <h2>Features</h2>
-        <ul>
-            <li>Clean layout</li>
-            <li>Navigation bar</li>
-            <li>Responsive design basics</li>
-        </ul>
-    </main>
+        <div class="features-container">
+            <div class="features-text">
+                <h2>Features</h2>
+                <ul><strong>
+                    <li>Create productive schedules</li>
+                    <li>Fun and interactive way to go through your tasks</li>
+                    <li>Complete more tasks daily and get excess leisure hours</li>
+               </strong></ul>
+            </div>
+            <div class="features-image">
+                <img src="image.jpg.jpg" alt="Features Illustration" width="250">
+            </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 My Website | All Rights Reserved</p>
-    </footer>
 
+
+
+
+
+        <footer>
+            <p>&copy; 2025 My Website | All Rights Reserved</p>
+        </footer>
 </body>
-</html>
 
+</html>
